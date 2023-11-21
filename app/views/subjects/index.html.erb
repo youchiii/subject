@@ -1,7 +1,10 @@
 <h1>スレッド一覧</h1>
-<% @lists.each do |list| %>
+<h3><%= link_to '新規投稿', new_subject_path %></h3>
+<p>※タイトル本文をクリックすると、スレッドの詳細ページに遷移できます。</p>
+<h6>タイトル</h6>
+<% @lists.each do |list| %><br>
 
-  <p>タイトル</p>
+
   <span>
     <%= link_to subject_path(list.id) do %>
       <%= list.title %>
