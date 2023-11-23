@@ -6,7 +6,7 @@ class SubjectsController < ApplicationController
   def create
     @list = List.new(list_params)
     @list.user_id = current_user.id
-    @list.save!　#びっくりマーク付けると保存できない原因がエラー文でわかる
+    @list.save!#びっくりマーク付けると保存できない原因がエラー文でわかる
     @lists = List.all
     render :index
   end

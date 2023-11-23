@@ -1,5 +1,5 @@
 <h1>スレッド一覧</h1>
-<h3><%= link_to '新規投稿', new_subject_path %></h3>
+<button type="button" class="btn btn-outline-dark"><h3><%= link_to '新規投稿', new_subject_path %></h3></button>
 <p>※タイトル本文をクリックすると、スレッドの詳細ページに遷移できます。</p>
 <h6>タイトル</h6>
 <% @lists.each do |list| %><br>
@@ -10,5 +10,6 @@
       <%= list.title %>
     <% end %>
   </span>
+    <%= list.body %>
 
 <% end %>
