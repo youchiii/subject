@@ -11,5 +11,6 @@
     <% end %>
   </span>
     <%= list.body %>
+    <%= link_to "#{list.comments.count} コメント", subject_comments_path(list.id) %>
 
 <% end %>

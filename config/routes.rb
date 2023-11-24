@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "homes#top"
-  resources :subjects, only: [:new, :create, :index, :show, :destroy, :top]
-    resources :comments, only: [:create]
+  resources :subjects, only: [:new, :create, :index, :show, :destroy, :top] do
+    resources :comments, only: [:create, :show]
+  end
    #get "/homes/about" => "homes#about", as: "about"
 end

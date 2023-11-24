@@ -6,3 +6,16 @@
 <% if @list.user == current_user %>
     <%= link_to "削除", subject_path(@list), method: :delete %>
 <% end %>
+<div>
+  <p>コメント件数:<%= @list.comments.count %></p>
+  <% @list.comments.each do |comment| %>
+    <%= comment.user.name %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: @list, :post do |f| %>
+    <%= f.text_area :comment, rows: '5',placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
