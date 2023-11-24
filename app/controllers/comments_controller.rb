@@ -1,21 +1,28 @@
 class CommentsController < ApplicationController
   def create
-    @list = List.find(params[:id])
+    @list = List.find(params[:subject_id])
     @comment = current_user.comments.new(comment_params)
-    @comment.list_id = list_id
+    @comment.list_id = @list.id
     @comment.save
-    redirect_to comment_path
+    redirect_to subject_path(@list)
   end
 
   def show
-    @list = List.find(params[:id])
+    @list = List.find(params[:subject_id])
     @comment = Comment.new
 
+  end
+
+  def destroy
+    @list = List.find(params[:id])
+    @comment = @list.comment.find(params[:id])
+    @comment.destroy
+    redirect_to subject_path(@list)
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:comment)
+    params.require(:list).permit(:comment)
   end
 end

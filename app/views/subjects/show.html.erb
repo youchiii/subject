@@ -11,10 +11,13 @@
   <% @list.comments.each do |comment| %>
     <%= comment.user.name %>
     <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+    <% if comment.user == current_user %>
+      <%= link_to "削除", subject_comment_path(@list, @comment), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+    <% end %><br>
   <% end %>
 </div>
 <div>
-  <%= form_with model: @list, :post do |f| %>
+  <%= form_with model: @list, url: subject_comments_path(@list.id),  method: :post do |f| %>
     <%= f.text_area :comment, rows: '5',placeholder: "コメントをここに" %>
     <%= f.submit "送信する" %>
   <% end %>
