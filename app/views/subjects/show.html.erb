@@ -12,8 +12,22 @@
     <%= comment.user.name %>
     <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
     <% if comment.user == current_user %>
-      <%= link_to "削除", subject_comment_path(@list, @comment), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      <%= link_to "削除", subject_comment_path(@list, comment), method: :delete, data: { confirm: '本当に削除しますか？' } %>
     <% end %><br>
+  <% end %>
+
+  <% if @list.favorited_by?(current_user) %>
+    <p>
+      <%= link_to subject_favorite_path(@list),method: :delete do %>
+        ♥<%= @list.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% else %>
+    <p>
+      <%= link_to subject_favorite_path(@list), method: :post do %>
+        ♡<%= @list.favorites.count %> いいね
+      <% end %>
+    </p>
   <% end %>
 </div>
 <div>

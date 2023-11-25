@@ -14,8 +14,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @list = List.find(params[:id])
-    @comment = @list.comment.find(params[:id])
+    @comment = Comment.find(params[:id])
+    @list = @comment.list
     @comment.destroy
     redirect_to subject_path(@list)
   end
