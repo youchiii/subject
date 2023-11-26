@@ -1,16 +1,35 @@
-<h1>スレッド一覧</h1>
 <button type="button" class="btn btn-outline-dark"><h3><%= link_to '新規投稿', new_subject_path %></h3></button>
 <p>※タイトル本文をクリックすると、スレッドの詳細ページに遷移できます。</p>
-<h6>タイトル</h6>
-<% @lists.each do |list| %><br>
 
 
-  <span>
-    <%= link_to subject_path(list.id) do %>
-      <%= list.title %>
-    <% end %>
-  </span>
-    <%= list.body %>
-    <%= "#{list.comments.count} コメント" %>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-8 offset-md-1">
+      <h2>スレッド一覧</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>スレッド名</th>
+            <th>スレッド説明</th>
+            <th colspan="4"></th>
+          </tr>
+        </thead>
+      </table>
 
-<% end %>
+      <tbody>
+        <% @lists.each do |list| %><br>
+        <tr>
+          <td>
+            <%= link_to subject_path(list.id) do %>
+              <%= list.title %>
+            <% end %>
+          </td>
+          <td><%= list.body %></td>
+          <td><%= "#{list.comments.count} コメント" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </div>
+  </div>
+</div>
+<%= paginate @lists %>

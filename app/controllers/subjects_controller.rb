@@ -8,11 +8,12 @@ class SubjectsController < ApplicationController
     @list.user_id = current_user.id
     @list.save!#びっくりマーク付けると保存できない原因がエラー文でわかる
     @lists = List.all
-    render :index
+    redirect_to action: :index #renderでindexに遷移すると@lists = List.allのままなのでページネーションでエラーが起きる
   end
 
   def index
-    @lists = List.all #lists複数形は配列的な感じ
+    #@lists = List.all ・・・lists複数形は配列的な感じ
+    @lists = List.page(params[:page]).per(5) #pageはkaminariで使用可能になったメソッド
   end
 
   def show
