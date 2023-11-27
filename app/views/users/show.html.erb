@@ -3,11 +3,33 @@
   <p>Name: <%= @user.name %></p>
   <%= link_to "プロフィール編集",edit_user_path(current_user) %>
 </div>
-
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-8 offset-md-1">
 <p><%= @user.name %>が作成したスレッド一覧</p>
-<% @lists.each do |list| %>
-  <%= link_to subject_path(list.id) do %>
-    <%= list.title %><br>
-  <% end %>
-  <%= list.body %>
-<% end %>
+<table class="table table-striped">
+        <thead>
+          <tr>
+            <th>スレッド名</th>
+            <th>スレッド説明</th>
+            <th>コメント数</th>
+            <th>経過時間</th>
+            <th>操作</th>
+            <th colspan="4"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><% @lists.each do |list| %></td>
+            <td><%= link_to subject_path(list.id) do %>
+                  <%= list.title %><br>
+                <% end %>
+            </td>
+            <td><%= list.body %></td>
+          <% end %>
+          </tr>
+        </tbody>
+      </div>
+    </div>
+  </div>
+</div>
