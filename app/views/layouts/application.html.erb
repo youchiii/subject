@@ -13,20 +13,23 @@
 
   <body>
     <header>
-        <header>
+        <header  class="sticky-top">
           <% if user_signed_in? %>
+          <nav class="navbar navbar-expand-md">
             <li>
-              <%= link_to "スレッド新規作成",new_subject_path %>
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-              <%= link_to "スレッド一覧",subjects_path %>
-              <%= link_to "プロフィール",user_path(current_user) %>
+              <i class="fa-solid fa-file-pen"></i><%= link_to "スレッド新規作成",new_subject_path %>|
+              <i class="fa-solid fa-handshake-slash"></i><%= link_to "ログアウト", destroy_user_session_path, method: :delete %>|
+              <i class="fa-solid fa-book"></i><%= link_to "スレッド一覧",subjects_path %>|
+              <i class="fa-solid fa-person"></i><%= link_to "プロフィール",user_path(current_user) %>|
+              <i class="fa-solid fa-house"></i><%= link_to "トップ",subjects_top_path %>|
+              <i class="fa-solid fa-address-card"><%= link_to "概要",homes_about_path %></i>
             </li>
+          </nav>
           <% else %>
             <li>
-              <%= link_to "新規登録", new_user_registration_path %>
-            </li>
-            <li>
-              <%= link_to "ログイン", new_user_session_path %>
+              <i class="fa-solid fa-user-plus"></i><%= link_to "新規登録", new_user_registration_path %>|
+              <i class="fa-solid fa-right-to-bracket"></i><%= link_to "ログイン", new_user_session_path %>
+              <i class="fa-solid fa-address-card"><%= link_to "概要",homes_about_path %></i>
             </li>
           <% end %>
         </header>

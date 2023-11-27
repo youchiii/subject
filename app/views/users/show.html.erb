@@ -1,13 +1,13 @@
-<h1>プロフィール</h1>
+<h1><i class="fa-solid fa-person">プロフィール</i></h1>
 <div>
-  <h3><%= @user.name %></h3>
+  <p>Name: <%= @user.name %></p>
   <%= link_to "プロフィール編集",edit_user_path(current_user) %>
 </div>
 
 <p><%= @user.name %>が作成したスレッド一覧</p>
 <% @lists.each do |list| %>
   <%= link_to subject_path(list.id) do %>
-    <%= list.title %>
+    <%= list.title %><br>
   <% end %>
   <%= list.body %>
 <% end %>
