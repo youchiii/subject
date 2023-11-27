@@ -13,7 +13,7 @@ class SubjectsController < ApplicationController
 
   def index
     #@lists = List.all ・・・lists複数形は配列的な感じ
-    @lists = List.page(params[:page]).per(5) #pageはkaminariで使用可能になったメソッド
+    @lists = List.page(params[:page])
   end
 
   def show

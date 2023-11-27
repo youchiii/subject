@@ -19,6 +19,7 @@
               <%= link_to "スレッド新規作成",new_subject_path %>
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
               <%= link_to "スレッド一覧",subjects_path %>
+              <%= link_to "プロフィール",user_path(current_user) %>
             </li>
           <% else %>
             <li>
