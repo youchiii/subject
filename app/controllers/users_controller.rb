@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @lists = @user.lists#特定のユーザに関連付けられた投稿全て@user.listsを取得できる
+    @lists = List.page(params[:page])
   end
 
   def edit

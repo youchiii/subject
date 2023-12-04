@@ -2,17 +2,17 @@ class SubjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   def new
-    @list = List.new
+    @list = List.new#自動的にcreateアクションへのURLが送られる。List.newでモデルの情報をもとにオブジェっくとが生成される。
   end
 
   def create
-    @list = List.new(list_params)
-    @list.user_id = current_user.id
-    if @list.save#びっくりマーク付けると保存できない原因がエラー文でわかる
-    @lists = List.all
-    redirect_to action: :index #renderでindexに遷移すると@lists = List.allのままなのでページネーションでエラーが起きる
+    list = List.new(list_params)
+    list.user_id = current_user.id
+    if list.save#びっくりマーク付けると保存できない原因がエラー文でわかる
+      lists = List.all
+      redirect_to action: :index #renderでindexに遷移すると@lists = List.allのままなのでページネーションでエラーが起きる
     else
-    @lists = List.all
+      lists = List.all
     render :new
     end
   end
@@ -20,10 +20,12 @@ class SubjectsController < ApplicationController
   def index
     #@lists = List.all ・・・lists複数形は配列的な感じ
     @lists = List.page(params[:page])
+    @list = List.new #部分テンプレートで新規投稿フォームを表示するために必要なインスタンス変数。indexの表示には関係ない。
   end
 
   def show
     @list = List.find(params[:id])
+    @list2 = List.new #部分テンプレートで新規投稿フォームを表示するために必要なインスタンス変数。showの表示には関係ない。
   end
 
   def edit
@@ -38,9 +40,9 @@ class SubjectsController < ApplicationController
   def top
 
   end
-  private
-  # ストロングパラメータ
+
+  private#ストロングパラメータ:境界線privateの中に書いたものは書かれたコントローラー(この場合はsubjects_controller)でしか呼び出せない。「モデル名_params」とすることが多い.
   def list_params
-    params.require(:list).permit(:title, :body)
+    params.require(:list).permit(:title, :body) #formから送られてくるデータはparamsの中に入ってる。listモデルの中のtitleカラムとbodyカラムのみ保存を許可する
   end
 end

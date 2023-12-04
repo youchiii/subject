@@ -20,16 +20,23 @@
         </thead>
         <tbody>
           <tr>
-            <td><% @lists.each do |list| %></td>
+            <% @lists.each do |list| %>
             <td><%= link_to subject_path(list.id) do %>
                   <%= list.title %><br>
                 <% end %>
             </td>
             <td><%= list.body %></td>
-          <% end %>
+            <td><%= "#{list.comments.count} コメント" %></td>
+            <td><i class="far fa-clock clock-icon"></i><%= time_ago_in_words(list.created_at) %>前</td>
+            <td><% if list.user == current_user %>
+                <%= link_to "削除", subject_path(@lists), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+              <% end %>
+            </td>
+            <% end %>
           </tr>
         </tbody>
       </div>
     </div>
   </div>
 </div>
+<%= paginate @lists %>

@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   get 'users/show'
   get 'users/edit'
   #get 'homes/top'
-  devise_for :users
+  devise_for :users, controllers: {
+    passwords: 'public/passwords' #パスワード再設定用ルーティング
+  }
   get "subjects/top" => "subjects#top"
   get "homes/about" => "homes#about"
 

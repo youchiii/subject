@@ -1,41 +1,46 @@
-<p>※タイトル本文をクリックすると、スレッドの詳細ページに遷移できます。</p>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4"> <%# 部分テンプレートのBootstrapが影響して上手くいかない可能性あり。 %>
+            <%= render 'subject', list: @list %> <%# <%= render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値] %>　<%#※部分テンプレートを呼び出すのに必要な記述 %>
+          </div>
+          <div class="col-lg-8">
+            <p>※タイトル本文をクリックすると、スレッドの詳細ページに遷移できます。</p>
+            <h2><i class="fa-solid fa-book">スレッド一覧</i></h2>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>スレッド名</th>
+                  <th>スレッド説明</th>
+                  <th>コメント数</th>
+                  <th>経過時間</th>
+                  <th>操作</th>
+                  <th colspan="4"></th>
+                </tr>
+              </thead>
 
-<div class="container px-5 px-sm-0">
-  <div class="row">
-    <div class="col-md-8 offset-md-1">
-      <h2>スレッド一覧</h2>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>スレッド名</th>
-            <th>スレッド説明</th>
-            <th>コメント数</th>
-            <th>経過時間</th>
-            <th>操作</th>
-            <th colspan="4"></th>
-          </tr>
-        </thead>
 
-
-      <tbody>
-        <% @lists.each do |list| %><br>
-        <tr>
-          <td>
-            <%= link_to subject_path(list.id) do %>
-              <%= list.title %>
-            <% end %>
-          </td>
-          <td><%= list.body %></td>
-          <td><%= "#{list.comments.count} コメント" %></td>
-          <td><i class="far fa-clock clock-icon"></i><%= time_ago_in_words(list.created_at) %>前</td>
-          <td><% if list.user == current_user %>
-                <%= link_to "削除", subject_path(@lists), method: :delete, data: { confirm: '本当に削除しますか？' } %>
-              <% end %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-      </table>
+              <tbody>
+                <% @lists.each do |list| %><br>
+                <tr>
+                  <td>
+                    <%= link_to subject_path(list.id) do %>
+                      <%= list.title %>
+                    <% end %>
+                  </td>
+                  <td><%= list.body %></td>
+                  <td><%= "#{list.comments.count} コメント" %></td>
+                  <td><i class="far fa-clock clock-icon"></i><%= time_ago_in_words(list.created_at) %>前</td>
+                  <td><% if list.user == current_user %>
+                        <a data-confirm="本当に消しますか？"class="btn btn-sm btn-danger" rel="nofollow" data-method="delete" href="<%= subject_path(list) %>">Destroy</a></td>
+                      <% end %>
+                  </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+      </div>
+      </div>
     </div>
   </div>
 </div>
