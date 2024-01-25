@@ -1,4 +1,36 @@
-<h1>トップ</h1>
-<p>※なんでも投稿していいよ</p>
-<button type="button" class="btn btn-outline-dark"><%= link_to '新規投稿', new_subject_path %></button>
-<button type="button" class="btn btn-outline-dark"><%= link_to 'スレッド一覧', subjects_path %></button>
+<body>
+  <h1 class="text-center">トップ</h1>
+  <p class="text-center">最新の３件のスレッドが表示されています。</p>
+  <table class="table table-bordered">
+    <thead class="text-center">
+      <tr>
+        <th>スレッド名</th>
+        <th>スレッド詳細</th>
+        <th>スレッド作成日時</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      <% @lists.order(created_at: :desc).limit(3).each do |list| %>
+        <tr>
+          <td>
+            <%= link_to subject_path(list.id) do %>
+              <%= list.title %>
+            <% end %>
+          </td>
+          <td><%= list.body %></td>
+          <td><%= list.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class = "text-center">
+      <div class="row">
+          <div class="col-md-6">
+              <button type="button" class="btn btn-outline-dark"><%= link_to '新規投稿', new_subject_path %></button><br>
+          </div>
+          <div class="col-md-6">
+              <button type="button" class="btn btn-outline-dark"><%= link_to '投稿一覧', subjects_path %></button><br>
+          </div>
+      </div>
+  </div>
+</body>

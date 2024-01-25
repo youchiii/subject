@@ -12,28 +12,28 @@
   </head>
 
   <body>
-    <header>
-        <header  class="sticky-top">
-          <% if user_signed_in? %>
-          <nav class="navbar navbar-expand-md">
-            <li>
-              <i class="fa-solid fa-file-pen"></i><%= link_to "スレッド新規作成",new_subject_path %>|
-              <i class="fa-solid fa-handshake-slash"></i><%= link_to "ログアウト", destroy_user_session_path, method: :delete %>|
-              <i class="fa-solid fa-book"></i><%= link_to "スレッド一覧",subjects_path %>|
-              <i class="fa-solid fa-person"></i><%= link_to "プロフィール",user_path(current_user) %>|
-              <i class="fa-solid fa-house"></i><%= link_to "トップ",subjects_top_path %>|
-              <i class="fa-solid fa-address-card"><%= link_to "概要",homes_about_path %></i>
-            </li>
-          </nav>
-          <% else %>
-            <li>
-              <i class="fa-solid fa-user-plus"></i><%= link_to "新規登録", new_user_registration_path %>|
-              <i class="fa-solid fa-right-to-bracket"></i><%= link_to "ログイン", new_user_session_path %>
-              <i class="fa-solid fa-address-card"><%= link_to "概要",homes_about_path %></i>
-            </li>
-          <% end %>
+        <header class="bg-dark text-white shadow-sm">
+          <div class="container">
+            <% if user_signed_in? %>
+            <nav class="navbar navbar-expand-md"><!--画面の幅が中サイズ（md）以上の場合にナビゲーションバーの要素を表示するように指定します。画面が小さい場合は、ハンバーガーメニューや他の折りたたみメニューが表示されることがあります。-->
+              <li>
+                <i class="fa-solid fa-file-pen"></i><%= link_to "スレッド新規作成",new_subject_path %>|
+                <i class="fa-solid fa-handshake-slash"></i><%= link_to "ログアウト", destroy_user_session_path, method: :delete %>|
+                <i class="fa-solid fa-book"></i><%= link_to "スレッド一覧",subjects_path %>|
+                <i class="fa-solid fa-person"></i><%= link_to "プロフィール",user_path(current_user) %>|
+                <i class="fa-solid fa-house"></i><%= link_to "トップ",subjects_top_path %>|
+                <i class="fa-solid fa-address-card"><%= link_to "概要",homes_about_path %></i>
+              </li>
+            </nav>
+            <% else %>
+              <li>
+                <i class="fa-solid fa-user-plus"></i><%= link_to "新規登録", new_user_registration_path %>|
+                <i class="fa-solid fa-right-to-bracket"></i><%= link_to "ログイン", new_user_session_path %>
+                <i class="fa-solid fa-address-card"><%= link_to "概要",homes_about_path %></i>
+              </li>
+            <% end %>
+          </div>
         </header>
-    </header>
     <%= yield %>
   </body>
 </html>

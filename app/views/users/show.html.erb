@@ -1,12 +1,11 @@
-<h1><i class="fa-solid fa-person">プロフィール</i></h1>
-<div>
-  <p>Name: <%= @user.name %></p>
-  <%= link_to "プロフィール編集",edit_user_path(current_user) %>
+<h1 class="text-center"><i class="fa-solid fa-person text">プロフィール</i></h1>
+
+<p class="text-center">Name: <%= @user.name %></p>
+<div class="text-center">
+  <button type="button" class="btn btn-outline-dark"><%= link_to "プロフィール編集",edit_user_path(current_user) %></button>
 </div>
-<div class="container px-5 px-sm-0">
-  <div class="row">
-    <div class="col-md-8 offset-md-1">
-<p><%= @user.name %>が作成したスレッド一覧</p>
+
+<p class="text-center"><%= @user.name %>が作成したスレッド一覧</p>
 <table class="table table-striped">
         <thead>
           <tr>
@@ -19,8 +18,8 @@
           </tr>
         </thead>
         <tbody>
+          <% @lists.each do |list| %>
           <tr>
-            <% @lists.each do |list| %>
             <td><%= link_to subject_path(list.id) do %>
                   <%= list.title %><br>
                 <% end %>
@@ -36,7 +35,4 @@
           </tr>
         </tbody>
       </div>
-    </div>
-  </div>
-</div>
 <%= paginate @lists %>

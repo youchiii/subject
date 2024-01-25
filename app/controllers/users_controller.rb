@@ -26,9 +26,9 @@ class UsersController < ApplicationController
   end
 
   def is_maching_login_user
-    user = User.find(params[:id])
-    unless user.id == current_user.id
-      redirect_to subjects_path
+    user = User.find(params[:id]) #idをuserに格納
+    unless user.id == current_user.id #userに格納したユーザーidが現在のユーザーと同じか比較している。
+      redirect_to subjects_path #現在のユーザと一致しなかった場合、subjects_pathへリダイレクトする.例:他のユーザーのプロフィール編集画面へ遷移できなくなる
     end
   end
 end

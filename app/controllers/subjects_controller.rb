@@ -2,7 +2,7 @@ class SubjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   def new
-    @list = List.new#自動的にcreateアクションへのURLが送られる。List.newでモデルの情報をもとにオブジェっくとが生成される。
+    @list = List.new#自動的にcreateアクションへのURLが送られる。List.newでモデルの情報をもとにオブジェクトが生成される。
   end
 
   def create
@@ -38,7 +38,7 @@ class SubjectsController < ApplicationController
   end
 
   def top
-
+    @lists = List.all
   end
 
   private#ストロングパラメータ:境界線privateの中に書いたものは書かれたコントローラー(この場合はsubjects_controller)でしか呼び出せない。「モデル名_params」とすることが多い.
