@@ -6,13 +6,13 @@ class SubjectsController < ApplicationController
   end
 
   def create
-    list = List.new(list_params)
-    list.user_id = current_user.id
-    if list.save#びっくりマーク付けると保存できない原因がエラー文でわかる
-      lists = List.all
+    @list = List.new(list_params)
+    @list.user_id = current_user.id
+    if @list.save#びっくりマーク付けると保存できない原因がエラー文でわかる
+      @ists = List.all
       redirect_to action: :index #renderでindexに遷移すると@lists = List.allのままなのでページネーションでエラーが起きる
     else
-      lists = List.all
+      @lists = List.all
     render :new
     end
   end

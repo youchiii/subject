@@ -2,16 +2,20 @@
 
   <div class="rol">
     <div class="center-block">
-      <h1>掲示板</h1>
-      <p>真面目に勉強していないように見えるかもしれなけど、このくらい朝飯前ですよ。</p>
-      <p>※本掲示板は新規登録もしくはログイン完了後、お楽しみ頂けます。</p>
+      <div class="text-center">
+        <h1>掲示板</h1>
+        <p>真面目に勉強していないように見えるかもしれなけど、このくらい朝飯前ですよ。</p>
+        <p>※本掲示板は新規登録もしくはログイン完了後、お楽しみ頂けます。</p>
+      </div>
     </div>
 
-    <div class="col-lg-6">
-      <button type="button" class="btn btn-outline-info"><i class="fa-solid fa-user-plus"></i><%= link_to "新規登録", new_user_registration_path %></button>
-    </div>
-    <div class="col-lg-6">
-      <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-right-to-bracket"></i><%= link_to "ログイン", new_user_session_path %></button>
+    <div class="text-center">
+      <div class="col-lg-6">
+        <button type="button" class="btn btn-outline-info"><i class="fa-solid fa-user-plus"></i><%= link_to "新規登録", new_user_registration_path %></button>
+      </div>
+      <div class="col-lg-6">
+        <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-right-to-bracket"></i><%= link_to "ログイン", new_user_session_path %></button>
+      </div>
     </div>
   </div>
 </div>

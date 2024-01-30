@@ -1,21 +1,24 @@
 <%# <%= render 'subject', list: @list %> <%# <%= render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値] %>
-<h1>新規投稿ページ</h1>
-<p>タイトルにスレッドのタイトルを本文にスレッドの詳細(ルール等)を記述してください。投稿ボタンを押すとスレッドが作成されます。<br>※どちらか１つでも空欄の場合、エラーメッセージが表示されてスレッドの作成に失敗します。</p>
-<% if @list.errors.any? %>
-  <%= @list.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @list.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-<%= form_with model: @list, url: subjects_path,  method: :post do |f| %>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>  <%# プロパティを:titleとすることでDBのどの値かをRailsは判別できる %>
+<div class="container"><div class="text-center">
+  <h1>新規投稿ページ</h1>
+  <p>タイトルにスレッドのタイトルを本文にスレッドの詳細(ルール等)を記述してください。投稿ボタンを押すとスレッドが作成されます。<br>※どちらか１つでも空欄の場合、エラーメッセージが表示されてスレッドの作成に失敗します。</p>
+  <% if @list.errors.any? %>
+    <%= @list.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= form_with model: @list, url: subjects_path,  method: :post do |f| %>
+    <h4>タイトル</h4>
+    <%= f.text_field :title %>  <%# プロパティを:titleとすることでDBのどの値かをRailsは判別できる %>
 
-  <h4>本文</h4>
-  <%= f.text_area :body %>
+    <h4>本文</h4>
+    <%= f.text_area :body %>
 
-  <%= f.submit '投稿' %>
-<% end %>
-<%= link_to 'スレッド一覧', subjects_path %>
+    <%= f.submit '投稿' %>
+  <% end %>
+  <%= link_to 'スレッド一覧', subjects_path %>
+</div>
+</div>
