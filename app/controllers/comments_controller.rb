@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
   def create
-    @list = List.find(params[:subject_id])
+    @list = List.find(params[:subject_id])#ネストすると(params[:subject_id])でsubjectのidが取得できるようになる。
     @comment = current_user.comments.new(comment_params)
-    @comment.list_id = @list.id
+    @comment.list_id = @list.id#@commentのlist_idに@list.idを入れる
     @comment.save
     redirect_to subject_path(@list)
   end

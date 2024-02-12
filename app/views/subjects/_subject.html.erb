@@ -7,7 +7,7 @@
     <% end %>
   </ul>
 <% end %>
-<%= form_with model: list, url: subjects_path,  method: :post do |f| %>
+<%= form_with model: list, url: subjects_path,  method: :post do |f| %> <!--このフォームは list モデルと関連付けられており、フォームが送信されるときにはPOSTリクエストが /subjects に送信されることになる。-->
   <h4>タイトル</h4>
   <%= f.text_field :title %>
 

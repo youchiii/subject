@@ -6,7 +6,7 @@ class SubjectsController < ApplicationController
   end
 
   def create
-    @list = List.new(list_params)
+    @list = List.new(list_params)#titleとbodyに絞るため（）内にストロングパラメーターを指定
     @list.user_id = current_user.id
     if @list.save#びっくりマーク付けると保存できない原因がエラー文でわかる
       @ists = List.all
@@ -24,11 +24,17 @@ class SubjectsController < ApplicationController
   end
 
   def show
-    @list = List.find(params[:id])
+    @list = List.find(params[:id])#今回はレコードを1件だけ取得するので、インスタンス変数名は単数形の「@list」にします。URLのidの部分と値が同じ同じidカラムを取得
     @list2 = List.new #部分テンプレートで新規投稿フォームを表示するために必要なインスタンス変数。showの表示には関係ない。
   end
 
   def edit
+    @list = List.find(params[:id])
+  end
+  def update
+    list = List.find(params[:id])
+    list.update(list_params)
+    redirect_to subject_path(list.id)
   end
 
   def destroy

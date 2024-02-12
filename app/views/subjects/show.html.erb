@@ -26,6 +26,10 @@
                       <a data-confirm="本当に消しますか？"class="btn btn-sm btn-danger" rel="nofollow" data-method="delete" href="<%= subject_path(@list) %>">Destroy</a>
                     <% end %>
                 </td>
+                <td><% if @list.user == current_user %>
+                  <%= link_to "編集", edit_subject_path(@list.id) %>
+                  <% end %>
+                </td>
             <div>
               <% @list.comments.each do |comment| %>
                 <%= comment.user.name %>

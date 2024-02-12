@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   root to: "homes#top"
   resources :users, only: [:show, :edit,:update]
   #resources :homes, only: [:top, :about]
-  resources :subjects, only: [:new, :create, :index, :show, :destroy, :top] do
+  resources :subjects, only: [:new, :create, :index, :show, :edit, :update, :destroy, :top] do
     resource :favorite, only: [:create, :destroy]#resourceにすると/idがURLに含まれなくなる。
     resources :comments, only: [:create, :show, :destroy]
   end
