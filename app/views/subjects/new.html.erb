@@ -10,7 +10,7 @@
       <% end %>
     </ul>
   <% end %>
-  <%= form_with model: @list, url: subjects_path,  method: :post do |f| %>
+  <%= form_with model: @list, url: subjects_path,  method: :post do |f| %> <%# subject_path、@listでlistsモデルに値を送信している。送信だからmethodはpost.%>
     <h4>タイトル</h4>
     <%= f.text_field :title %>  <%# プロパティを:titleとすることでDBのどの値かをRailsは判別できる %>
 

@@ -5,11 +5,11 @@ class SubjectsController < ApplicationController
     @list = List.new#自動的にcreateアクションへのURLが送られる。List.newでモデルの情報をもとにオブジェクトが生成される。
   end
 
-  def create
+  def create　#新規投稿時、"投稿"ボタンが押下されたら実行される
     @list = List.new(list_params)#titleとbodyに絞るため（）内にストロングパラメーターを指定
-    @list.user_id = current_user.id
+    @list.user_id = current_user.id#現在のユーザを代入することで誰が投稿したかをわかるようにする。
     if @list.save#びっくりマーク付けると保存できない原因がエラー文でわかる
-      @ists = List.all
+      @lists = List.all
       redirect_to action: :index #renderでindexに遷移すると@lists = List.allのままなのでページネーションでエラーが起きる
     else
       @lists = List.all

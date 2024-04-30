@@ -1,6 +1,6 @@
 <h1>編集画面</h1>
 
-<%= form_with model: @list, url: subject_path(@list.id), method: :patch do |f| %>
+<%= form_with model: @list, url: subject_path(@list.id), method: :patch do |f| %><!-- subject#updateにはPUTとPATCHメソッドがあるのでどちらかわかるように指定する-->
 
   <h4>タイトル</h4>
   <%= f.text_field :title %>
