@@ -1,38 +1,48 @@
-<h1 class="text-center"><i class="fa-solid fa-person text">プロフィール</i></h1>
+<h1 class="text-center mb-4"><i class="fa-solid fa-person fa-lg text-primary"></i> プロフィール</h1>
 
-<p class="text-center">Name: <%= @user.name %></p>
-<div class="text-center">
-  <button type="button" class="btn btn-outline-dark"><%= link_to "プロフィール編集",edit_user_path(current_user) %></button>
+<p class="text-center mb-4">Name: <%= @user.name %></p>
+
+<div class="text-center mb-4">
+  <button type="button" class="btn btn-outline-dark">
+    <%= link_to "プロフィール編集", edit_user_path(current_user), class: "text-decoration-none" %>
+  </button>
 </div>
 
-<p class="text-center"><%= @user.name %>が作成したスレッド一覧</p>
-<table class="table table-striped">
-        <thead>
-          <tr>
-            <th>スレッド名</th>
-            <th>スレッド説明</th>
-            <th>コメント数</th>
-            <th>経過時間</th>
-            <th>操作</th>
-            <th colspan="4"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @lists.each do |list| %>
-          <tr>
-            <td><%= link_to subject_path(list.id) do %>
-                  <%= list.title %><br>
-                <% end %>
-            </td>
-            <td><%= list.body %></td>
-            <td><%= "#{list.comments.count} コメント" %></td>
-            <td><i class="far fa-clock clock-icon"></i><%= time_ago_in_words(list.created_at) %>前</td>
-            <td><% if list.user == current_user %>
-                <%= link_to "削除", subject_path(@lists), method: :delete, data: { confirm: '本当に削除しますか？' } %>
-              <% end %>
-            </td>
+<p class="text-center mb-4"><%= @user.name %>が作成したスレッド一覧</p>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>スレッド名</th>
+        <th>スレッド説明</th>
+        <th>コメント数</th>
+        <th>経過時間</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @lists.each do |list| %>
+        <tr>
+          <td>
+            <%= link_to subject_path(list.id), class: "text-decoration-none text-primary" do %>
+              <%= list.title %>
             <% end %>
-          </tr>
-        </tbody>
-      </div>
-<%= paginate @lists %>
+          </td>
+          <td class="text-truncate" style="max-width: 200px;">
+            <%= list.body %>
+          </td>
+          <td><%= "#{list.comments.count} コメント" %></td>
+          <td><i class="far fa-clock"></i> <%= time_ago_in_words(list.created_at) %>前</td>
+          <td>
+            <% if list.user == current_user %>
+              <%= link_to "削除", subject_path(list.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger btn-sm" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= paginate @lists, class: 'pagination justify-content-center' %>

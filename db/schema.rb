@@ -28,9 +28,6 @@ ActiveRecord::Schema.define(version: 2023_11_25_072626) do
   end
 
   create_table "lists", force: :cascade do |t|
-    #idカラム（主キー）はスキーマファイルに表示されない。
-    #rails c
-    #List.column_names 「テーブル名.column.names」でテーブルのカラム名を確認できる。
     t.string "title"
     t.string "body"
     t.datetime "created_at", precision: 6, null: false

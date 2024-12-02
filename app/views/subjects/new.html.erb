@@ -1,24 +1,39 @@
 <%# <%= render 'subject', list: @list %> <%# <%= render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値] %>
-<div class="container"><div class="text-center">
-  <h1>新規投稿ページ</h1>
-  <p>タイトルにスレッドのタイトルを本文にスレッドの詳細(ルール等)を記述してください。投稿ボタンを押すとスレッドが作成されます。<br>※どちらか１つでも空欄の場合、エラーメッセージが表示されてスレッドの作成に失敗します。</p>
-  <% if @list.errors.any? %>
-    <%= @list.errors.count %>件のエラーが発生しました
-    <ul>
-      <% @list.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
-  <%= form_with model: @list, url: subjects_path,  method: :post do |f| %> <%# subject_path、@listでlistsモデルに値を送信している。送信だからmethodはpost.%>
-    <h4>タイトル</h4>
-    <%= f.text_field :title %>  <%# プロパティを:titleとすることでDBのどの値かをRailsは判別できる %>
+<div class="container mt-5">
+  <div class="text-center">
+    <h1 class="mb-4">新規スレッド作成</h1>
+    <p class="lead">タイトルと本文を入力し、"投稿"ボタンを押すとスレッドが作成されます。</p>
+    <p class="text-muted">※どちらか１つでも空欄の場合、エラーメッセージが表示されてスレッドの作成に失敗します。</p>
+    
+    <% if @list.errors.any? %>
+      <div class="alert alert-danger">
+        <%= @list.errors.count %> 件のエラーが発生しました
+        <ul>
+          <% @list.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-    <h4>本文</h4>
-    <%= f.text_area :body %>
+    <%= form_with model: @list, url: subjects_path, method: :post, class: "w-50 mx-auto" do |f| %><%# subjects_path、@listでlistsモデルに値を送信している。送信だからmethodはpost.%>
+      <div class="form-group">
+        <h4 class="text-left">タイトル</h4>
+        <%= f.text_field :title, class: "form-control", placeholder: "スレッドのタイトルを入力" %><%# プロパティを:titleとすることでDBのどの値かをRailsは判別できる %>
+      </div>
 
-    <%= f.submit '投稿' %>
-  <% end %>
-  <%= link_to 'スレッド一覧', subjects_path %>
-</div>
+      <div class="form-group">
+        <h4 class="text-left">本文</h4>
+        <%= f.text_area :body, class: "form-control", placeholder: "スレッドの詳細（ルール等）を入力", rows: 5 %>
+      </div>
+
+      <div class="form-group text-center mt-4">
+        <%= f.submit '投稿', class: "btn btn-primary btn-lg" %>
+      </div>
+    <% end %>
+
+    <div class="mt-4">
+      <%= link_to 'スレッド一覧', subjects_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
 </div>

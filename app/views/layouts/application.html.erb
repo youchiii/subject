@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Subject</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,28 +12,59 @@
   </head>
 
   <body>
-        <header class="bg-dark text-white shadow-sm">
-          <div class="container">
-            <% if user_signed_in? %>
-            <nav class="navbar navbar-expand-md"><!--画面の幅が中サイズ（md）以上の場合にナビゲーションバーの要素を表示するように指定します。画面が小さい場合は、ハンバーガーメニューや他の折りたたみメニューが表示されることがあります。-->
-              <li>
-                <i class="fa-solid fa-file-pen"></i><%= link_to "スレッド新規作成",new_subject_path %>|
-                <i class="fa-solid fa-handshake-slash"></i><%= link_to "ログアウト", destroy_user_session_path, method: :delete %>|
-                <i class="fa-solid fa-book"></i><%= link_to "スレッド一覧",subjects_path %>|
-                <i class="fa-solid fa-person"></i><%= link_to "プロフィール",user_path(current_user) %>|
-                <i class="fa-solid fa-house"></i><%= link_to "トップ",subjects_top_path %>|
-                <i class="fa-solid fa-address-card"><%= link_to "概要",homes_about_path %></i>
-              </li>
-            </nav>
-            <% else %>
-              <li>
-                <i class="fa-solid fa-user-plus"></i><%= link_to "新規登録", new_user_registration_path %>|
-                <i class="fa-solid fa-right-to-bracket"></i><%= link_to "ログイン", new_user_session_path %>
-                <i class="fa-solid fa-address-card"><%= link_to "概要",homes_about_path %></i>
-              </li>
-            <% end %>
+    <header class="bg-dark text-white shadow-sm">
+      <div class="container">
+        <nav class="navbar navbar-expand-md navbar-dark"><!--画面の幅が中サイズ（md）以上の場合にナビゲーションバーの要素を表示するように指定します。画面が小さい場合は、ハンバーガーメニューや他の折りたたみメニューが表示されることがあります。-->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <% if user_signed_in? %>
+                <li class="nav-item">
+                  <i class="fa-solid fa-file-pen"></i>
+                  <%= link_to "スレッド新規作成", new_subject_path, class: "nav-link text-decoration-none" %>
+                </li>
+                <li class="nav-item">
+                  <i class="fa-solid fa-handshake-slash"></i>
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-decoration-none" %>
+                </li>
+                <li class="nav-item">
+                  <i class="fa-solid fa-book"></i>
+                  <%= link_to "スレッド一覧", subjects_path, class: "nav-link text-decoration-none" %>
+                </li>
+                <li class="nav-item">
+                  <i class="fa-solid fa-person"></i>
+                  <%= link_to "プロフィール", user_path(current_user), class: "nav-link text-decoration-none" %>
+                </li>
+                <li class="nav-item">
+                  <i class="fa-solid fa-house"></i>
+                  <%= link_to "トップ", subjects_top_path, class: "nav-link text-decoration-none" %>
+                </li>
+                <li class="nav-item">
+                  <i class="fa-solid fa-address-card"></i>
+                  <%= link_to "概要", homes_about_path, class: "nav-link text-decoration-none" %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <i class="fa-solid fa-user-plus"></i>
+                  <%= link_to "新規登録", new_user_registration_path, class: "nav-link text-decoration-none" %>
+                </li>
+                <li class="nav-item">
+                  <i class="fa-solid fa-right-to-bracket"></i>
+                  <%= link_to "ログイン", new_user_session_path, class: "nav-link text-decoration-none" %>
+                </li>
+                <li class="nav-item">
+                  <i class="fa-solid fa-address-card"></i>
+                  <%= link_to "概要", homes_about_path, class: "nav-link text-decoration-none" %>
+                </li>
+              <% end %>
+            </ul>
           </div>
-        </header>
+        </nav>
+      </div>
+    </header>
+
     <%= yield %>
   </body>
 </html>
