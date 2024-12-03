@@ -9,6 +9,11 @@
     <div class="col-lg-8">
       <p>※タイトルや本文をクリックすると、スレッドの詳細ページに遷移できます。</p>
       <h2><i class="fa-solid fa-book"></i> スレッド一覧</h2>
+      <%= link_to "新しい順", subjects_path(sort: "latest") %>
+      <%= link_to "古い順", subjects_path(sort: "old") %>
+      <%= link_to "コメント数順", subjects_path(sort: "comment_count") %>
+      <%= link_to "いいね数順", subjects_path(sort: "favorite_count") %>
+
 
       <!-- スレッド情報をテーブルで表示 -->
       <table class="table table-striped table-bordered">

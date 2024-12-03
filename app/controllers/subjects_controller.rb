@@ -19,8 +19,20 @@ class SubjectsController < ApplicationController
 
   def index
     #@lists = List.all ・・・lists複数形は配列的な感じ
-    @lists = List.page(params[:page]).order(created_at: :desc)
     @list = List.new #部分テンプレートで新規投稿フォームを表示するために必要なインスタンス変数。indexの表示には関係ない。
+
+    case params[:sort]
+    when "latest"
+      @lists = List.page(params[:page]).order(created_at: :desc)
+    when "old"
+      @lists = List.page(params[:page]).order(created_at: :desc)
+    when "comment_count"
+      @lists = List.page(params[:page]).left_joins(:comments).group(:id).order('COUNT(comments.id) DESC')
+    when "favorite_count"
+      @lists = List.page(params[:page]).left_joins(:favorites).group(:id).order('COUNT(favorites.id) DESC')
+    else
+      @lists = List.page(params[:page]).page(params[:page]).order(created_at: :desc)#デフォルトの並び順を降順に変更
+    end
   end
 
   def show
