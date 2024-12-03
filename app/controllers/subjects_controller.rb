@@ -19,7 +19,7 @@ class SubjectsController < ApplicationController
 
   def index
     #@lists = List.all ・・・lists複数形は配列的な感じ
-    @lists = List.page(params[:page])
+    @lists = List.page(params[:page]).order(created_at: :desc)
     @list = List.new #部分テンプレートで新規投稿フォームを表示するために必要なインスタンス変数。indexの表示には関係ない。
   end
 
