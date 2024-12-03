@@ -1,8 +1,9 @@
 ja:
-  views:
-    pagination:
-      first: '最初'
-      last: '最後'
-      previous: '前'
-      next: '次'
-      truncate: '...'
+  datetime:
+    distance_in_words:
+      about_x_hours: "約%{count}時間前"
+      less_than_x_minutes: "%{count}分未満前"
+      x_minutes: "%{count}分前"
+      x_days: "%{count}日前"
+      about_x_months: "約%{count}か月前"
+      about_x_years: "約%{count}年"
