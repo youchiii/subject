@@ -1,9 +1,9 @@
 ja:
   datetime:
     distance_in_words:
-      about_x_hours: "約%{count}時間前"
-      less_than_x_minutes: "%{count}分未満前"
-      x_minutes: "%{count}分前"
-      x_days: "%{count}日前"
-      about_x_months: "約%{count}か月前"
+      about_x_hours: "約%{count}時間"
+      less_than_x_minutes: "%{count}分未満"
+      x_minutes: "%{count}分"
+      x_days: "%{count}日"
+      about_x_months: "約%{count}か月"
       about_x_years: "約%{count}年"
