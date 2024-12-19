@@ -25,7 +25,7 @@ class SubjectsController < ApplicationController
     when "latest"
       @lists = List.page(params[:page]).order(created_at: :desc)
     when "old"
-      @lists = List.page(params[:page]).order(created_at: :desc)
+      @lists = List.page(params[:page]).order(created_at: :asc)
     when "comment_count"
       @lists = List.page(params[:page]).left_joins(:comments).group(:id).order('COUNT(comments.id) DESC')
     when "favorite_count"
@@ -56,8 +56,10 @@ class SubjectsController < ApplicationController
   end
 
   def top
-    @lists = List.all
+   @lists = List.all
+
   end
+
 
   private#ストロングパラメータ:境界線privateの中に書いたものは書かれたコントローラー(この場合はsubjects_controller)でしか呼び出せない。「モデル名_params」とすることが多い.
   def list_params

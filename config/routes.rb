@@ -16,5 +16,6 @@ Rails.application.routes.draw do
     resource :favorite, only: [:create, :destroy]#resourceにすると/idがURLに含まれなくなる。
     resources :comments, only: [:create, :show, :destroy]
   end
+  resources :news, only: :index
    #get "/homes/about" => "homes#about", as: "about"
 end

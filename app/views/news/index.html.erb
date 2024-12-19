@@ -1,0 +1,15 @@
+<h1>ニュース一覧</h1>
+
+<% @news.each do |article| %>
+  <div class="news-item">
+    <h2><%= article['title'] %></h2>
+    <p><%= article['description'] %></p>
+    <a href="<%= article['url'] %>" target="_blank">続きを読む</a>
+    <%= debug(@news) %>
+
+  </div>
+<% end %>
+
+<footer>
+  Powered by <%= link_to "News API", "https://newsapi.org", target: "_blank" %>
+</footer>
